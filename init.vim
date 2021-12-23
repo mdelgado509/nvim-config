@@ -2,8 +2,11 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'tpope/vim-fugitive'
 Plug 'davidhalter/jedi-vim'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'mdempsky/gocode', { 'rtp': 'nvim', 'do': '~/.local/share/nvim/plugged/gocode/nvim/symlink.sh' }
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'deoplete-plugins/deoplete-jedi'
+Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'morhetz/gruvbox'
@@ -16,14 +19,10 @@ Plug 'neomake/neomake'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'machakann/vim-highlightedyank'
 Plug 'tmhedberg/SimpylFold'
-Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 call plug#end()
 
-
 """""""""""""""""""""""""""deoplete.vim settings"""""""""""""""""""""""""""""""
-
 let g:deoplete#enable_at_startup = 1
 " preview window split
 set splitbelow
@@ -31,7 +30,9 @@ set splitbelow
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 " close preview window on leaving the insert mode
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
-
+" deoplete-go
+let g:deoplete#sources#go#gocode_binary = $GOPATH.'bin/gocode'
+let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
 """"""""""""""""""""""""""vim-airline-themes.vim settings""""""""""""""""""""""
 
 let g:airline_theme='powerlineish' " <theme> is a valid theme name
@@ -75,5 +76,4 @@ let g:highlightedyank_highlight_duration = 1000
 """"""""""""""""""""""""""SimpylFold.vim setings"""""""""""""""""""""""""""""""
 
 let g:SimpylFold_docstring_preview = 1
-
 
