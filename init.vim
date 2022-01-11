@@ -23,6 +23,7 @@ Plug 'tmhedberg/SimpylFold'
 call plug#end()
 
 """""""""""""""""""""""""""deoplete.vim settings"""""""""""""""""""""""""""""""
+
 let g:deoplete#enable_at_startup = 1
 " preview window split
 set splitbelow
@@ -33,6 +34,7 @@ autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 " deoplete-go
 let g:deoplete#sources#go#gocode_binary = $GOPATH.'bin/gocode'
 let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
+let g:deoplete#sources#go#builtin_objects = 1
 """"""""""""""""""""""""""vim-airline-themes.vim settings""""""""""""""""""""""
 
 let g:airline_theme='powerlineish' " <theme> is a valid theme name
@@ -65,7 +67,7 @@ let g:jedi#use_splits_not_buffers = "right"
 
 """"""""""""""""""""""""""neomake.vim setings""""""""""""""""""""""""""""""""""
 
-let g:neomake_python_enabled_makers = ['flake8']
+let g:neomake_python_enabled_makers = ['flake8'] 
 call neomake#configure#automake('nrwi', 500)
 
 """"""""""""""""""""""""""vim-highlightedyank.vim setings""""""""""""""""""""""
@@ -77,3 +79,6 @@ let g:highlightedyank_highlight_duration = 1000
 
 let g:SimpylFold_docstring_preview = 1
 
+"""""""""""""""""""""""""""General settings""""""""""""""""""""""""""""""""""""
+
+set number
